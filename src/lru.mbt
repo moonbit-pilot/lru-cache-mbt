@@ -48,19 +48,19 @@ pub struct LruCache[K, V] {
 
 ///| Create a new LruCache with the given capacity.
 /// The cache will be empty at the beginning.
-pub fn LruCache::new[K : Eq + Hash, V](capacity : UInt) -> LruCache[K, V] {
+pub fn[K : Eq + Hash, V] LruCache::new(capacity : UInt) -> LruCache[K, V] {
   { capacity, cache: Map::new() }
 }
 
 ///| Create a new LruCache with the given capacity.
 /// The cache will be empty at the beginning.
-pub fn new_lru_cache[K : Eq + Hash, V](capacity : UInt) -> LruCache[K, V] {
+pub fn[K : Eq + Hash, V] new_lru_cache(capacity : UInt) -> LruCache[K, V] {
   LruCache::new(capacity)
 }
 
 ///| Get the value associated with the given key.
 /// If the key is not found, return None.
-pub fn LruCache::get[K : Eq + Hash, V](self : LruCache[K, V], key : K) -> V? {
+pub fn[K : Eq + Hash, V] LruCache::get(self : LruCache[K, V], key : K) -> V? {
   if self.cache.contains(key) {
     let value = self.cache.get(key).unwrap()
     // Move the key to the end of the cache to mark it as recently used.
@@ -74,10 +74,10 @@ pub fn LruCache::get[K : Eq + Hash, V](self : LruCache[K, V], key : K) -> V? {
 ///| Put a key-value pair into the cache.
 /// If the cache is full, remove the least recently used item.
 /// If the key already exists, update the value and mark it as recently used.
-pub fn LruCache::put[K : Eq + Hash, V](
+pub fn[K : Eq + Hash, V] LruCache::put(
   self : LruCache[K, V],
   key : K,
-  value : V
+  value : V,
 ) -> Unit {
   if self.cache.contains(key) {
     // Update the value and mark it as recently used.
@@ -95,7 +95,7 @@ pub fn LruCache::put[K : Eq + Hash, V](
 
 ///| Get the size of the cache.
 /// The size is the number of key-value pairs in the cache.
-pub fn LruCache::size[K : Eq + Hash, V](self : LruCache[K, V]) -> UInt {
+pub fn[K : Eq + Hash, V] LruCache::size(self : LruCache[K, V]) -> UInt {
   self.cache.size().reinterpret_as_uint()
 }
 
@@ -103,19 +103,19 @@ pub fn LruCache::size[K : Eq + Hash, V](self : LruCache[K, V]) -> UInt {
 /// The capacity is the maximum number of key-value pairs that can be stored in the cache.
 /// The capacity is set when the cache is created.
 /// The capacity is not changed after the cache is created.
-pub fn LruCache::capacity[K : Eq + Hash, V](self : LruCache[K, V]) -> UInt {
+pub fn[K : Eq + Hash, V] LruCache::capacity(self : LruCache[K, V]) -> UInt {
   self.capacity
 }
 
 ///| Clear the cache.
 /// This will remove all key-value pairs from the cache.
-pub fn LruCache::clear[K : Eq + Hash, V](self : LruCache[K, V]) -> Unit {
+pub fn[K : Eq + Hash, V] LruCache::clear(self : LruCache[K, V]) -> Unit {
   self.cache.clear()
 }
 
 ///| Check if the cache contains the given key.
 /// If the key is found, return true.
 /// If the key is not found, return false.
-pub fn LruCache::has[K : Eq + Hash, V](self : LruCache[K, V], key : K) -> Bool {
+pub fn[K : Eq + Hash, V] LruCache::has(self : LruCache[K, V], key : K) -> Bool {
   self.cache.contains(key)
 }
