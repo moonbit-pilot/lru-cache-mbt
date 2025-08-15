@@ -2,7 +2,7 @@
 package "ShellWen/lru_cache"
 
 // Values
-fn[K : Eq + Hash, V] new_lru_cache(UInt) -> LruCache[K, V]
+fn[K, V] new_lru_cache(UInt) -> LruCache[K, V]
 
 // Errors
 
@@ -11,13 +11,13 @@ pub struct LruCache[K, V] {
   capacity : UInt
   cache : Map[K, V]
 }
-fn[K : Eq + Hash, V] LruCache::capacity(Self[K, V]) -> UInt
-fn[K : Eq + Hash, V] LruCache::clear(Self[K, V]) -> Unit
+fn[K, V] LruCache::capacity(Self[K, V]) -> UInt
+fn[K, V] LruCache::clear(Self[K, V]) -> Unit
 fn[K : Eq + Hash, V] LruCache::get(Self[K, V], K) -> V?
 fn[K : Eq + Hash, V] LruCache::has(Self[K, V], K) -> Bool
-fn[K : Eq + Hash, V] LruCache::new(UInt) -> Self[K, V]
+fn[K, V] LruCache::new(UInt) -> Self[K, V]
 fn[K : Eq + Hash, V] LruCache::put(Self[K, V], K, V) -> Unit
-fn[K : Eq + Hash, V] LruCache::size(Self[K, V]) -> UInt
+fn[K, V] LruCache::size(Self[K, V]) -> UInt
 
 // Type aliases
 

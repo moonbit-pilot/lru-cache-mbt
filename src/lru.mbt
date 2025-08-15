@@ -22,22 +22,21 @@
 /// # Usage
 ///
 /// ```moonbit
-/// let cache : LruCache[String, Int] = LruCache::new(2)
-/// cache.put("key1", 100)
-/// cache.put("key2", 200)
+/// let _cache : LruCache[String, Int] = LruCache::new(2)
+/// _cache.put("key1", 100)
+/// _cache.put("key2", 200)
 /// // Accessing key1 marks it as recently used
-/// let val = cache.get("key1") // Some(100)
+/// let _val = _cache.get("key1") // Some(100)
 /// // Adding a new key when at capacity evicts the least recently used key (key2)
-/// cache.put("key3", 300)
-/// let val2 = cache.get("key2") // None, key2 was evicted
+/// _cache.put("key3", 300)
+/// let _val2 = _cache.get("key2") // None, key2 was evicted
 /// ```
 ///
 /// The cache can be used with any key type that implements Eq + Hash:
 ///
 /// ```moonbit
-/// struct CustomKey { id: Int } derive(Eq, Hash)
-/// 
-/// let cache : LruCache[CustomKey, Int] = LruCache::new(10)
+/// // struct CustomKey { id: Int } derive(Eq, Hash)
+/// // let cache : LruCache[CustomKey, Int] = LruCache::new(10)
 /// ```
 pub struct LruCache[K, V] {
   // `capacity` means the max size of the cache. After the cache is full, the least recently used item will be removed.
@@ -48,13 +47,13 @@ pub struct LruCache[K, V] {
 
 ///| Create a new LruCache with the given capacity.
 /// The cache will be empty at the beginning.
-pub fn[K : Eq + Hash, V] LruCache::new(capacity : UInt) -> LruCache[K, V] {
+pub fn[K, V] LruCache::new(capacity : UInt) -> LruCache[K, V] {
   { capacity, cache: Map::new() }
 }
 
 ///| Create a new LruCache with the given capacity.
 /// The cache will be empty at the beginning.
-pub fn[K : Eq + Hash, V] new_lru_cache(capacity : UInt) -> LruCache[K, V] {
+pub fn[K, V] new_lru_cache(capacity : UInt) -> LruCache[K, V] {
   LruCache::new(capacity)
 }
 
@@ -95,7 +94,7 @@ pub fn[K : Eq + Hash, V] LruCache::put(
 
 ///| Get the size of the cache.
 /// The size is the number of key-value pairs in the cache.
-pub fn[K : Eq + Hash, V] LruCache::size(self : LruCache[K, V]) -> UInt {
+pub fn[K, V] LruCache::size(self : LruCache[K, V]) -> UInt {
   self.cache.size().reinterpret_as_uint()
 }
 
@@ -103,13 +102,13 @@ pub fn[K : Eq + Hash, V] LruCache::size(self : LruCache[K, V]) -> UInt {
 /// The capacity is the maximum number of key-value pairs that can be stored in the cache.
 /// The capacity is set when the cache is created.
 /// The capacity is not changed after the cache is created.
-pub fn[K : Eq + Hash, V] LruCache::capacity(self : LruCache[K, V]) -> UInt {
+pub fn[K, V] LruCache::capacity(self : LruCache[K, V]) -> UInt {
   self.capacity
 }
 
 ///| Clear the cache.
 /// This will remove all key-value pairs from the cache.
-pub fn[K : Eq + Hash, V] LruCache::clear(self : LruCache[K, V]) -> Unit {
+pub fn[K, V] LruCache::clear(self : LruCache[K, V]) -> Unit {
   self.cache.clear()
 }
 
