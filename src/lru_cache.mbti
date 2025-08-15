@@ -1,22 +1,23 @@
-package ShellWen/lru_cache
+// Generated using `moon info`, DON'T EDIT IT
+package "ShellWen/lru_cache"
 
 // Values
-fn new_lru_cache[K : Eq + Hash, V](UInt) -> LruCache[K, V]
+fn[K : Eq + Hash, V] new_lru_cache(UInt) -> LruCache[K, V]
+
+// Errors
 
 // Types and methods
 pub struct LruCache[K, V] {
   capacity : UInt
   cache : Map[K, V]
 }
-impl LruCache {
-  capacity[K : Eq + Hash, V](Self[K, V]) -> UInt
-  clear[K : Eq + Hash, V](Self[K, V]) -> Unit
-  get[K : Eq + Hash, V](Self[K, V], K) -> V?
-  has[K : Eq + Hash, V](Self[K, V], K) -> Bool
-  new[K : Eq + Hash, V](UInt) -> Self[K, V]
-  put[K : Eq + Hash, V](Self[K, V], K, V) -> Unit
-  size[K : Eq + Hash, V](Self[K, V]) -> UInt
-}
+fn[K : Eq + Hash, V] LruCache::capacity(Self[K, V]) -> UInt
+fn[K : Eq + Hash, V] LruCache::clear(Self[K, V]) -> Unit
+fn[K : Eq + Hash, V] LruCache::get(Self[K, V], K) -> V?
+fn[K : Eq + Hash, V] LruCache::has(Self[K, V], K) -> Bool
+fn[K : Eq + Hash, V] LruCache::new(UInt) -> Self[K, V]
+fn[K : Eq + Hash, V] LruCache::put(Self[K, V], K, V) -> Unit
+fn[K : Eq + Hash, V] LruCache::size(Self[K, V]) -> UInt
 
 // Type aliases
 
